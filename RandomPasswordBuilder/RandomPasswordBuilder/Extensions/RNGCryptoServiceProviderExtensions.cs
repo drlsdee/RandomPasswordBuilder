@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace System.Text.RandomPasswordBuilder.Extensions
+namespace DrLSDee.Text.RandomPasswordBuilder.Extensions
 {
     /// <summary>
     /// Provides some extension methods for the <see cref="RNGCryptoServiceProvider"/> class; 
@@ -64,7 +63,7 @@ namespace System.Text.RandomPasswordBuilder.Extensions
         /// <param name="value">The extreme <see cref="int">integer</see> value in the range</param>
         /// <returns>An <see cref="int">integer</see> value in the 
         /// range between zero and the specified <paramref name="value"/></returns>
-        internal static int Next(this RNGCryptoServiceProvider rNG, int value) => Next(rNG, 0, value);
+        internal static int Next(this RNGCryptoServiceProvider rNG, int value) => rNG.Next(0, value);
 
         /// <summary>
         /// Implements a kind of <see cref="Random.Next()"/> method 
@@ -76,6 +75,6 @@ namespace System.Text.RandomPasswordBuilder.Extensions
         /// <returns>An <see cref="int">integer</see> value in the range 
         /// between the <see cref="int.MinValue"/> and 
         /// <see cref="int.MaxValue"/></returns>
-        internal static int Next(this RNGCryptoServiceProvider rNG) => Next(rNG, int.MinValue, int.MaxValue);
+        internal static int Next(this RNGCryptoServiceProvider rNG) => rNG.Next(int.MinValue, int.MaxValue);
     }
 }

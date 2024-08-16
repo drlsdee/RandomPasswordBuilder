@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace System.Text.RandomPasswordBuilder.Constants
+namespace DrLSDee.Text.RandomPasswordBuilder.Constants
 {
+    /// <summary>
+    /// Stores some default character sets for generating passwords.
+    /// </summary>
     public static class DefaultCharacters
     {
         /// <summary>

@@ -1,11 +1,10 @@
-﻿using System;
+﻿using DrLSDee.Text.RandomPasswordBuilder.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Text.RandomPasswordBuilder.Enums;
 using System.Threading.Tasks;
 
-namespace System.Text.RandomPasswordBuilder.Extensions
+namespace DrLSDee.Text.RandomPasswordBuilder.Extensions
 {
     /// <summary>
     /// Extensions for enums in this project
