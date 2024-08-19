@@ -10,7 +10,7 @@ namespace DrLSDee.Text.RandomPasswordBuilder.Constants
     /// <summary>
     /// Stores some default character dictionaries as fields.
     /// </summary>
-    internal static class DefaultDictionaries
+    public static class DefaultDictionaries
     {
         /// <summary>
         /// The default XML-unsafe dictionary containing 
@@ -20,7 +20,7 @@ namespace DrLSDee.Text.RandomPasswordBuilder.Constants
         /// <see cref="DefaultCharacters.Special"/> character sets including 
         /// the <see cref="DefaultCharacters.XmlUnsafe"/> characters.
         /// </summary>
-        internal static readonly Dictionary<CharacterCategory, string> Default 
+        public static readonly Dictionary<CharacterCategory, string> Default
             = new Dictionary<CharacterCategory, string>()
         {
             { CharacterCategory.Digits, DefaultCharacters.Digits },
@@ -37,7 +37,7 @@ namespace DrLSDee.Text.RandomPasswordBuilder.Constants
         /// <see cref="DefaultCharacters.XmlSafe"/> character sets excluding 
         /// the <see cref="DefaultCharacters.XmlUnsafe"/> characters.
         /// </summary>
-        internal static readonly Dictionary<CharacterCategory, string> DefaultXmlSafe
+        public static readonly Dictionary<CharacterCategory, string> DefaultXmlSafe
             = new Dictionary<CharacterCategory, string>()
         {
             { CharacterCategory.Digits, DefaultCharacters.Digits },
