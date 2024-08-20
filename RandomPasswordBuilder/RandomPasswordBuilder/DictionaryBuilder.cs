@@ -351,6 +351,18 @@ namespace DrLSDee.Text.RandomPasswordBuilder
             => TrySetDictionary(characterCategory, xmlSafe, Enumerable.Empty<char>(), Enumerable.Empty<char>());
 
         /// <summary>
+        /// Just clears the instance.
+        /// </summary>
+        public void Clear()
+        {
+            Items.Clear();
+            Exclude.Clear();
+            Include.Clear();
+            IsXmlSafe = false;
+            CharacterCategories = default;
+        }
+
+        /// <summary>
         /// The default paramless constructor.
         /// </summary>
         public DictionaryBuilder() { }
@@ -377,6 +389,19 @@ namespace DrLSDee.Text.RandomPasswordBuilder
         /// <param name="xmlSafe">Indicates whether the dictionary must contain only XML-safe characters.</param>
         public DictionaryBuilder(CharacterCategory characterCategory, bool xmlSafe = false)
             => TrySetDictionary(characterCategory, xmlSafe, Enumerable.Empty<char>(), Enumerable.Empty<char>());
+
+        /// <summary>
+        /// The default XML-unsafe instance.
+        /// </summary>
+        public static DictionaryBuilder Default { get; } = new DictionaryBuilder();
+
+        /// <summary>
+        /// The default XML-safe instance; <see cref="DefaultCharacters.XmlUnsafe"/> characters are excluded.
+        /// </summary>
+        public static DictionaryBuilder DefaultXmlSafe { get; } = new DictionaryBuilder(CharacterCategory.Digits
+            | CharacterCategory.UpperCase
+            | CharacterCategory.LowerCase
+            | CharacterCategory.Special, true);
 
         /// <summary>
         /// Base character dictionary, created from the <see cref="DefaultDictionaries.Default"/>.
