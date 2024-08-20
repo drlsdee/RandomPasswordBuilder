@@ -218,7 +218,7 @@ namespace DrLSDee.Text.RandomPasswordBuilder
             if (Items.TryGetValue(key, out string oldValue))
             {
                 // The resulting value is still not empty, so replace the old one
-                if (TryExcept(oldValue, out IEnumerable<char> selected))
+                if (TryExcept(oldValue, chars, out IEnumerable<char> selected))
                 {
                     Items[key] = new string(selected.ToArray());
                 }
