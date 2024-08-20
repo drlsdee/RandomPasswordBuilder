@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace DrLSDee.Text.RandomPasswordBuilder
 {
+    /// <summary>
+    /// Helper class to generate character dictionaries.
+    /// </summary>
     public class DictionaryBuilder
     {
         /// <summary>
@@ -146,6 +149,15 @@ namespace DrLSDee.Text.RandomPasswordBuilder
         private bool TryExcept(IEnumerable<char> excludeFrom, out IEnumerable<char> result) 
             => TryExcept(excludeFrom, Exclude, out result);
 
+        /// <summary>
+        /// Intersects the <paramref name="intersectTo"/> list with an ethalon <paramref name="intersectWith"/>
+        /// character set and stores the <paramref name="result"/>.
+        /// </summary>
+        /// <param name="intersectTo">Source character set.</param>
+        /// <param name="intersectWith">Reference character set.</param>
+        /// <param name="result">Resulting character set.</param>
+        /// <returns>Returns <see langword="true"/>, if the <paramref name="result"/> contains characters,
+        /// and <see langword="false"/>, if not.</returns>
         private static bool TryIntersect(IEnumerable<char> intersectTo, IEnumerable<char> intersectWith, 
             out IEnumerable<char> result)
         {
@@ -155,12 +167,26 @@ namespace DrLSDee.Text.RandomPasswordBuilder
             return result.Any();
         }
 
+        /// <summary>
+        /// Unused method. Combines two character sets.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="result"></param>
+        /// <returns></returns>
         private static bool TryUnion(IEnumerable<char> x, IEnumerable<char> y, out IEnumerable<char> result)
         {
             result = x.Any() ? x.Union(y) : Enumerable.Empty<char>();
             return result.Any();
         }
 
+        /// <summary>
+        /// Adds character set from <paramref name="chars"/> to the certain <paramref name="key"/>
+        /// of <see cref="Items"/> dictionary. Optionally resets the value.
+        /// </summary>
+        /// <param name="key">An <see cref="Items"/> key.</param>
+        /// <param name="chars">Character set to add.</param>
+        /// <param name="clear">If set to <see langword="true"/>, previous value will be deleted.</param>
         private void AddValue(CharacterCategory key, IEnumerable<char> chars, bool clear = false)
         {
             // If after the exclusion of disallowed chars the collection is still not empty
@@ -181,6 +207,11 @@ namespace DrLSDee.Text.RandomPasswordBuilder
             }
         }
 
+        /// <summary>
+        /// Removes characters from the <see cref="Items"/> <paramref name="key"/>.
+        /// </summary>
+        /// <param name="key">An <see cref="Items"/> key.</param>
+        /// <param name="chars">Character set to exclude.</param>
         private void RemoveValue(CharacterCategory key, IEnumerable<char> chars)
         {
             // Dictionary contains key
@@ -200,6 +231,12 @@ namespace DrLSDee.Text.RandomPasswordBuilder
             }
         }
 
+        /// <summary>
+        /// Adds <paramref name="chars"/> to the <see cref="Items"/>, sorting by categories.
+        /// </summary>
+        /// <param name="chars">Character set to add.</param>
+        /// <param name="clear">If set to <see langword="true"/>, previous value will be deleted.</param>
+        /// <returns>Returns <see langword="true"/>, if the <see cref="Items"/> not empty.</returns>
         public bool Add(IEnumerable<char> chars, bool clear = false)
         {
             // Exclude disallowed chars
@@ -230,6 +267,11 @@ namespace DrLSDee.Text.RandomPasswordBuilder
             return Items.Any();
         }
 
+        /// <summary>
+        /// Removes <paramref name="chars"/> from the <see cref="Items"/> dictionary.
+        /// </summary>
+        /// <param name="chars">Character set to remove.</param>
+        /// <returns>Returns <see langword="true"/>, if the <see cref="Items"/> not empty.</returns>
         public bool Remove(IEnumerable<char> chars)
         {
             // Add values to the "Exclude" set and remove from the "Include"
@@ -244,13 +286,33 @@ namespace DrLSDee.Text.RandomPasswordBuilder
             return Items.Any();
         }
 
+        /// <summary>
+        /// Returns base values from the <see cref="DefaultDictionaries.DefaultXmlSafe"/> or <see cref="DefaultDictionaries.Default"/> dictionaries.
+        /// </summary>
+        /// <param name="key">Dictionary key, <see cref="CharacterCategory"/></param>
+        /// <param name="xmlSafe">If set to <see langword="true"/>, uses XML-safe character set.</param>
+        /// <returns>Character set as a <see cref="string"/></returns>
         private static string GetBaseCharacterSet(CharacterCategory key, bool xmlSafe = false)
         {
             return xmlSafe ? DefaultDictionaries.DefaultXmlSafe[key] : DefaultDictionaries.Default[key];
         }
 
+        /// <summary>
+        /// Overloads the <see cref="GetBaseCharacterSet(CharacterCategory, bool)"/> using the <see cref="IsXmlSafe"/> as a second argument.
+        /// </summary>
+        /// <param name="key">Dictionary key, <see cref="CharacterCategory"/></param>
+        /// <returns>Character set as a <see cref="string"/></returns>
         private string GetBaseCharacterSet(CharacterCategory key) => GetBaseCharacterSet(key, IsXmlSafe);
 
+        /// <summary>
+        /// Rebuilds an <see cref="Items"/> dictionary using the specified <see cref="CharacterCategory"/> <paramref name="characterCategory"/>,
+        /// <paramref name="exclude"/> and <paramref name="include"/> character sets.
+        /// </summary>
+        /// <param name="characterCategory"><see cref="CharacterCategory"/> to include.</param>
+        /// <param name="xmlSafe">Indicates whether the dictionary must contain only XML-safe characters.</param>
+        /// <param name="exclude">Disallowed character set.</param>
+        /// <param name="include">Additional characters to include.</param>
+        /// <returns>Returns <see langword="true"/>, if the <see cref="Items"/> dictionary is not empty.</returns>
         public bool TrySetDictionary(CharacterCategory characterCategory, bool xmlSafe,
             IEnumerable<char> exclude, IEnumerable<char> include)
         {
@@ -277,28 +339,55 @@ namespace DrLSDee.Text.RandomPasswordBuilder
             return Items.Any();
         }
 
+        /// <summary>
+        /// Overloads the <see cref="TrySetDictionary(CharacterCategory, bool, IEnumerable{char}, IEnumerable{char})"/>,
+        /// but without additional character sets to include or exclude.
+        /// Previous values of the <see cref="Exclude"/> and <see cref="Include"/> properties will be deleted.
+        /// </summary>
+        /// <param name="characterCategory"><see cref="CharacterCategory"/> to include.</param>
+        /// <param name="xmlSafe">Indicates whether the dictionary must contain only XML-safe characters.</param>
+        /// <returns>Returns <see langword="true"/>, if the <see cref="Items"/> dictionary is not empty.</returns>
         public bool TrySetDictionary(CharacterCategory characterCategory, bool xmlSafe = false) 
             => TrySetDictionary(characterCategory, xmlSafe, Enumerable.Empty<char>(), Enumerable.Empty<char>());
 
+        /// <summary>
+        /// The default paramless constructor.
+        /// </summary>
         public DictionaryBuilder() { }
 
+        /// <summary>
+        /// Creates an instance with explicitly specified <see cref="CharacterCategories"/> to use, as well as the
+        /// <see cref="Exclude"/> and <see cref="Include"/> characters, <see cref="IsXmlSafe">XML-safe</see> or not.
+        /// </summary>
+        /// <param name="characterCategory"><see cref="CharacterCategory"/> to include.</param>
+        /// <param name="xmlSafe">Indicates whether the dictionary must contain only XML-safe characters.</param>
+        /// <param name="exclude">Disallowed character set.</param>
+        /// <param name="include">Additional characters to include.</param>
         public DictionaryBuilder(CharacterCategory characterCategory, bool xmlSafe, 
             IEnumerable<char> exclude, IEnumerable<char> include)
         {
             TrySetDictionary(characterCategory, xmlSafe, exclude, include);
         }
 
+        /// <summary>
+        /// Creates an instance with explicitly specified <see cref="CharacterCategories"/> to use, <see cref="IsXmlSafe">XML-safe</see> or not.
+        /// No additional character sets to <see cref="Exclude"/> or <see cref="Include"/>.
+        /// </summary>
+        /// <param name="characterCategory"><see cref="CharacterCategory"/> to include.</param>
+        /// <param name="xmlSafe">Indicates whether the dictionary must contain only XML-safe characters.</param>
         public DictionaryBuilder(CharacterCategory characterCategory, bool xmlSafe = false)
             => TrySetDictionary(characterCategory, xmlSafe, Enumerable.Empty<char>(), Enumerable.Empty<char>());
 
         /// <summary>
-        /// Base character dictionary.
+        /// Base character dictionary, created from the <see cref="DefaultDictionaries.Default"/>.
         /// </summary>
         public Dictionary<CharacterCategory, string> Items { get; private set; }
             = new Dictionary<CharacterCategory, string>(DefaultDictionaries.Default);
 
         /// <summary>
-        /// Stores character categories to use; just for information.
+        /// Stores character categories to use; just for information. The value may be overridden 
+        /// using the<see cref="TrySetDictionary(CharacterCategory, bool, IEnumerable{char}, IEnumerable{char})"/>,
+        /// <see cref="Add(IEnumerable{char}, bool)"/>, <see cref="Remove(IEnumerable{char})"/> and other methods.
         /// </summary>
         public CharacterCategory CharacterCategories { get; private set; } 
             = CharacterCategory.Digits 
