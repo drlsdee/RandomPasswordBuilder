@@ -55,7 +55,7 @@ namespace Com.Contoso.Example
             {
                 for (int i = 0; i < Count; i++)
                 {
-                    Console.WriteLine($"Password {i + 1} of {Count - 1}: {builder.Next()}");
+                    Console.WriteLine($"Password {i + 1} of {Count}: {builder.Next()}");
                 }
             }
         }
@@ -66,16 +66,16 @@ namespace Com.Contoso.Example
 It shows something like this:
 
 ```
-Password 1 of 9: 164Ls:7jT
-Password 2 of 9: 84k8N50Q~
-Password 3 of 9: VB26>040~s]q
-Password 4 of 9: 2U:kEgS7V
-Password 5 of 9: sPr_N9VBM9qjaL[
-Password 6 of 9: 1cKGAE~MH6}j1;WC
-Password 7 of 9: f3?CC7GHE
-Password 8 of 9: 3bQd22;3R761pn~u
-Password 9 of 9: KJTUO13z4EH3H(t
-Password 10 of 9: #FWs3-5v7.558
+Password 1 of 10: 164Ls:7jT
+Password 2 of 10: 84k8N50Q~
+Password 3 of 10: VB26>040~s]q
+Password 4 of 10: 2U:kEgS7V
+Password 5 of 10: sPr_N9VBM9qjaL[
+Password 6 of 10: 1cKGAE~MH6}j1;WC
+Password 7 of 10: f3?CC7GHE
+Password 8 of 10: 3bQd22;3R761pn~u
+Password 9 of 10: KJTUO13z4EH3H(t
+Password 10 of 10: #FWs3-5v7.558
 ```
 
 **This** example is not quite correct, because when the static method `Main()` completes, it **disposes** a temporary instance of `PasswordBuilder`.
