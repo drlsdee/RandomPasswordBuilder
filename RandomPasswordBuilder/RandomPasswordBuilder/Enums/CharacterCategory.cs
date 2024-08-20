@@ -7,36 +7,36 @@ using System.Threading.Tasks;
 namespace DrLSDee.Text.RandomPasswordBuilder.Enums
 {
     /// <summary>
-    /// Enumerates character categories to use in generated strings.
+    /// <para type="description">Enumerates character categories to use in generated strings.</para>
     /// </summary>
     [Flags()]
     public enum CharacterCategory
     {
         /// <summary>
-        /// If this flag is set, the generated string must contain digit 
+        /// <para type="description">If this flag is set, the generated string must contain digit 
         /// characters: from '0' to '9', defined in the
-        /// <see cref="DefaultCharacters.Digits"/>.
+        /// <see cref="DefaultCharacters.Digits"/>.</para>
         /// </summary>
         Digits = 0b_00001,
 
         /// <summary>
-        /// If this flag is set, the generated string must contain lowercase 
+        /// <para type="description">If this flag is set, the generated string must contain lowercase 
         /// letters: e.g. basic latin from 'a' to 'z' defined in the
-        /// <see cref="DefaultCharacters.LowerCase"/>.
+        /// <see cref="DefaultCharacters.LowerCase"/>.</para>
         /// </summary>
         UpperCase = 0b_00010,
 
         /// <summary>
-        /// If this flag is set, the generated string must contain UPPERCASE 
+        /// <para type="description">If this flag is set, the generated string must contain UPPERCASE 
         /// letters: e.g. basic latin from 'A' to 'Z'  defined in the
-        /// <see cref="DefaultCharacters.UpperCase"/>.
+        /// <see cref="DefaultCharacters.UpperCase"/>.</para>
         /// </summary>
         LowerCase = 0b_00100,
 
         /// <summary>
-        /// If this flag is set, the generated string must contain special 
+        /// <para type="description">If this flag is set, the generated string must contain special 
         /// characters from the set defined in the
-        /// <see cref="DefaultCharacters.Special"/> constant.
+        /// <see cref="DefaultCharacters.Special"/> constant.</para>
         /// </summary>
         Special = 0b_01000
     }

@@ -9,37 +9,38 @@ using System.Threading.Tasks;
 namespace DrLSDee.Text.RandomPasswordBuilder.Cmdlets
 {
     /// <summary>
-    /// Produces randomly generated strings.
+    /// <para type="synopsis">The cmdlet produces randomly generated strings containing characters from all specified categories.</para>
+    /// <para type="description">The cmdlet produces randomly generated strings containing characters from all specified categories.</para>
     /// </summary>
     [Cmdlet(VerbsCommon.Get, "RandomPassword")]
     [OutputType(typeof(string))]
     public class GetRandomPasswordCmdlet : PSCmdlet
     {
         /// <summary>
-        /// Specifies the minimum password length; the default value is 8.
+        /// <para type="description">Specifies the minimum password length; the default value is 8.</para>
         /// </summary>
         [Parameter(Position = 0)]
         [ValidateRange(4, int.MaxValue)]
         public int MinLength { get; set; } = 8;
 
         /// <summary>
-        /// Specifies the maximum password length; the default value is 16.
+        /// <para type="description">Specifies the maximum password length; the default value is 16.</para>
         /// </summary>
         [Parameter(Position = 1)]
         [ValidateRange(4, int.MaxValue)]
         public int MaxLength { get; set; } = 16;
 
         /// <summary>
-        /// Specifies the number of random strings to generate; the default is 1.
+        /// <para type="description">Specifies the number of random strings to generate; the default is 1.</para>
         /// </summary>
         [Parameter(Position = 2)]
         [ValidateRange(1, int.MaxValue)]
         public int Count { get; set; } = 1;
 
         /// <summary>
-        /// Specifies the character categories to use. Possible values are <see cref="CharacterCategory.Digits"/>,
+        /// <para type="description">Specifies the character categories to use. Possible values are <see cref="CharacterCategory.Digits"/>,
         /// <see cref="CharacterCategory.UpperCase"/>, <see cref="CharacterCategory.LowerCase"/>,
-        /// <see cref="CharacterCategory.Special"/> and any combinations thereof.
+        /// <see cref="CharacterCategory.Special"/> and any combinations thereof.</para>
         /// </summary>
         [Parameter(Position = 3)]
         public CharacterCategory CharacterCategory { get; set; } 
@@ -47,19 +48,19 @@ namespace DrLSDee.Text.RandomPasswordBuilder.Cmdlets
             | CharacterCategory.LowerCase | CharacterCategory.Special;
 
         /// <summary>
-        /// Indicates whether we must not use XML-unsafe characters: &quot;, &apos;, &lt;, &gt; and &amp;
+        /// <para type="description">Indicates whether we must not use XML-unsafe characters: &quot;, &apos;, &lt;, &gt; and &amp;</para>
         /// </summary>
         [Parameter()]
         public SwitchParameter XmlSafe { get; set; }
 
         /// <summary>
-        /// Specifies the characters to not use in generated strings, in addition to the <see cref="XmlSafe"/> parameter or not.
+        /// <para type="description">Specifies the characters to not use in generated strings, in addition to the <see cref="XmlSafe"/> parameter or not.</para>
         /// </summary>
         [Parameter()]
         public char[] Exclude { get; set; } = new char[0];
 
         /// <summary>
-        /// Specifies the additional characters to use in generated strings.
+        /// <para type="description">Specifies the additional characters to use in generated strings.</para>
         /// </summary>
         [Parameter()]
         public char[] Include { get; set; } = new char[0];
