@@ -28,6 +28,14 @@ Optionally, you can specify lists of additional characters to add or exclude, or
 
 The class has a flag that excludes XML-unsafe characters: `"'<>&`; you can use it if you plan to use generated strings in XML documents, e.g. when sending SOAP requests.
 
+## Limitations
+
+The library currently uses .NET Framework 4.8, not .NET or .NET Core.
+
+This is because the core product is being developed for use on general Windows/Windows Server installations where newer runtimes may not be installed.
+
+But feel free to fork this project and adapt it for runtime you prefer.
+
 ## Examples
 
 You can also see an example of usage in the PowerShell cmdlet class [GetRandomPasswordCmdlet.cs](RandomPasswordBuilder\RandomPasswordBuilder\Cmdlets\GetRandomPasswordCmdlet.cs)
