@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("RandomPasswordBuilder")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("This is just another .NET library generating random strings that are guaranteed to include all specified character categories.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("RandomPasswordBuilder")]
