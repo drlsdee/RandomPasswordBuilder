@@ -6,7 +6,7 @@ This is just another .NET library generating random strings.
 
 The library was developed as a side product.
 
-It includes the class `DrLSDee.Text.RandomPasswordBuilder.PasswordBuilder` providing a method to generate passwords that are guaranteed to include all specified character categories.
+It includes the class [DrLSDee.Text.RandomPasswordBuilder.PasswordBuilder](RandomPasswordBuilder\RandomPasswordBuilder\PasswordBuilder.cs) providing a method to generate passwords that are guaranteed to include all specified character categories.
 
 Unlike some others, the class method `PasswordBuilder.Next()` does not simply repeat random string generation until one finally meets the password requirements.
 
