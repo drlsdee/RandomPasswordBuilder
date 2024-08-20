@@ -146,7 +146,7 @@ namespace DrLSDee.Text.RandomPasswordBuilder
         /// Because this method resets character set, added characters will be excluded from the <see cref="Exclude"/> property.
         /// </summary>
         /// <param name="key"><see cref="CharacterCategory"/> to reset in the<see cref="Items"/>.</param>
-        /// <param name="xmlSafe">If set to <see langword="true"/>, excludes <see cref="DefaultCharacters.XmlUnsafe"/> characters.
+        /// <param name="xmlSafe">If set to <see langword="true"/>, excludes <see cref="DefaultCharacters.XmlUnsafe"/> characters.</param>
         public void ResetCategory(CharacterCategory key, bool xmlSafe = false) => dictionaryBuilder.ResetCategory(key, xmlSafe);
         #endregion ProxyMethods
 
@@ -223,7 +223,6 @@ namespace DrLSDee.Text.RandomPasswordBuilder
         /// <summary>
         /// Returns random value between the <see cref="MinLength"/> and <see cref="MaxLength"/> as current password length.
         /// </summary>
-        /// <param name="rNG">A <see cref="RNGCryptoServiceProvider"/> instance.</param>
         /// <returns>Random <see cref="int"/> value between the <see cref="MinLength"/> and <see cref="MaxLength"/></returns>
         private int GetCurrentLength() => IsFixedLength ? MinLength : rNG.Next(MinLength, MaxLength);
 

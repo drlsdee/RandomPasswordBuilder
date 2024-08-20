@@ -103,7 +103,7 @@ namespace DrLSDee.Text.RandomPasswordBuilder
         /// Because this method resets character set, added characters will be excluded from the <see cref="Exclude"/> property.
         /// </summary>
         /// <param name="key"><see cref="CharacterCategory"/> to reset in the<see cref="Items"/>.</param>
-        /// <param name="xmlSafe">If set to <see langword="true"/>, excludes <see cref="DefaultCharacters.XmlUnsafe"/> characters.
+        /// <param name="xmlSafe">If set to <see langword="true"/>, excludes <see cref="DefaultCharacters.XmlUnsafe"/> characters.</param>
         public void ResetCategory(CharacterCategory key, bool xmlSafe = false)
         {
             IsXmlSafe = xmlSafe;
