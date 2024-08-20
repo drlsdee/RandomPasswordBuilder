@@ -1,4 +1,5 @@
-﻿using DrLSDee.Text.RandomPasswordBuilder.Enums;
+﻿using DrLSDee.Text.RandomPasswordBuilder.Constants;
+using DrLSDee.Text.RandomPasswordBuilder.Enums;
 using DrLSDee.Text.RandomPasswordBuilder.Extensions;
 using System;
 using System.Collections.Generic;
@@ -197,7 +198,26 @@ namespace DrLSDee.Text.RandomPasswordBuilder
             MinLength = length;
             MaxLength = length;
         }
+
+        private PasswordBuilder(DictionaryBuilder dictionary)
+        {
+            dictionaryBuilder = dictionary;
+            rNG = new RNGCryptoServiceProvider();
+            MinLength = 8; MaxLength = 16;
+        }
         #endregion Constructors
+
+        /// <summary>
+        /// The default XML-unsafe instance with all char categories, without character sets to exclude or include 
+        /// and with password length between 8 and 16 chars.
+        /// </summary>
+        public static PasswordBuilder Default { get { return new PasswordBuilder(); } }
+
+        /// <summary>
+        /// The default XML-safe instance with all char categories, without extra character sets to exclude or include 
+        /// and with password length between 8 and 16 chars.
+        /// </summary>
+        public static PasswordBuilder DefaultXmlSafe { get { return new PasswordBuilder(DictionaryBuilder.DefaultXmlSafe); } }
 
         #region HelperMethods
         /// <summary>
